@@ -85,7 +85,7 @@ export function updateMapboxLayers(map, newLayers = {}, oldLayers = null) {
       (oldLayers && oldLayers[layerId]) || {};
 
     if (data && data !== oldData) {
-      updateSourceData(map, sourceId, data);
+      updateSourceData(map, sourceId, data, config);
     }
 
     // compare with previous configs
@@ -116,16 +116,28 @@ function updateLayerConfig(map, layerId, config, isVisible) {
   map.setLayoutProperty(layerId, 'visibility', isVisible ? 'visible' : 'none');
 }
 
-function updateSourceData(map, sourceId, data) {
-  const source = map.getSource(sourceId);
-
-  if (!source) {
-    map.addSource(sourceId, {
-      type: 'geojson',
-      data
-    });
+function updateSourceData(map, sourceId, data, config) {
+  if (config.type === 'fill' && config._sourceType === 'vector') {
+    const category = JSON.parse(data[config._categoryIndex])
+    const source = map.getSource(category.resolution)
+    if (!source) {
+      map.addSource(category.resolution, {
+        type: 'vector',
+        tiles: [config._sourceUrl],
+        minzoom: 6,
+        maxzoom: 14,
+      })
+    }
   } else {
-    source.setData(data);
+    const source = map.getSource(sourceId)
+    if (!source) {
+      map.addSource(sourceId, {
+        type: 'geojson',
+        data,
+      })
+    } else {
+      source.setData(data)
+    }
   }
 }
 /**
