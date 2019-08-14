@@ -118,10 +118,9 @@ function updateLayerConfig(map, layerId, config, isVisible) {
 
 function updateSourceData(map, sourceId, data, config) {
   if (config.type === 'fill' && config._sourceType === 'vector') {
-    const category = JSON.parse(data[config._categoryIndex])
-    const source = map.getSource(category.resolution)
+    const source = map.getSource(config.source)
     if (!source) {
-      map.addSource(category.resolution, {
+      map.addSource(config.source, {
         type: 'vector',
         tiles: [config._sourceUrl],
         minzoom: 6,
