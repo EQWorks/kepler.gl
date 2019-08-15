@@ -129,8 +129,8 @@ export default function SidePanelFactory(
 
     render() {
       const {
-        appName,
-        version,
+        // appName,
+        // version,
         datasets,
         filters,
         layers,
@@ -194,6 +194,7 @@ export default function SidePanelFactory(
             minifiedWidth={0}
             onOpenOrClose={this._onOpenOrClose}
           >
+          {/*
             <PanelHeader
               appName={appName}
               version={version}
@@ -204,9 +205,10 @@ export default function SidePanelFactory(
               hideExportDropdown={uiStateActions.hideExportDropdown}
               onExportMap={this._onExportMap}
               onSaveMap={this.props.onSaveMap}
-            />
+            /
+          */}
             <PanelToggle
-              panels={PANELS}
+              panels={[PANELS[0]]}
               activePanel={activeSidePanel}
               togglePanel={uiStateActions.toggleSidePanel}
             />

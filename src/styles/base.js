@@ -159,7 +159,6 @@ export const sidePanelBg = '#242730';
 export const sideBarCloseBtnBgd = secondaryBtnBgd;
 export const sideBarCloseBtnColor = '#29323C';
 export const sideBarCloseBtnBgdHover = secondaryBtnActBgd;
-
 export const panelBackground = '#29323C';
 export const panelBackgroundHover = '#3A4552';
 export const panelActiveBg = '#3A4552';

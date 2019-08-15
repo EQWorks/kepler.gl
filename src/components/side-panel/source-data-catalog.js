@@ -20,13 +20,22 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import {format} from 'd3-format';
+// import {format} from 'd3-format';
 
-import {SidePanelSection, Tooltip, DatasetSquare, CenterFlexbox} from 'components/common/styled-components';
-import {Table, Trash, ArrowRight} from 'components/common/icons';
+import {
+  SidePanelSection, 
+  Tooltip, 
+  DatasetSquare,
+  // CenterFlexbox
+} from 'components/common/styled-components';
+import {
+  //Table, 
+  Trash, 
+  //ArrowRight
+} from 'components/common/icons';
 
 const defaultRemoveDataset = datasetKey => {};
-const numFormat = format(',');
+// const numFormat = format(',');
 
 const SourceDataCatelogWrapper = styled.div`
   transition: ${props => props.theme.transition};
@@ -81,11 +90,11 @@ const DataTagAction = styled.div`
   opacity: 0;
 `;
 
-const DataRowCount = styled.div`
-  font-size: 11px;
-  color: ${props => props.theme.subtextColor};
-  padding-left: 19px;
-`;
+// const DataRowCount = styled.div`
+//   font-size: 11px;
+//   color: ${props => props.theme.subtextColor};
+//   padding-left: 19px;
+// `;
 
 export const DatasetTag = ({onClick, dataset}) => (
   <DatasetTagWrapper className="source-data-tag" onClick={onClick}>
@@ -94,18 +103,18 @@ export const DatasetTag = ({onClick, dataset}) => (
   </DatasetTagWrapper>
 );
 
-const ShowDataTable = ({id, showDatasetTable}) => (
-  <DataTagAction
-    className="dataset-action show-data-table"
-    data-tip
-    data-for={`data-table-${id}`}
-  >
-    <Table height="16px" onClick={() => showDatasetTable(id)} />
-    <Tooltip id={`data-table-${id}`} effect="solid">
-      <span>Show data table</span>
-    </Tooltip>
-  </DataTagAction>
-);
+// const ShowDataTable = ({id, showDatasetTable}) => (
+//   <DataTagAction
+//     className="dataset-action show-data-table"
+//     data-tip
+//     data-for={`data-table-${id}`}
+//   >
+//     <Table height="16px" onClick={() => showDatasetTable(id)} />
+//     <Tooltip id={`data-table-${id}`} effect="solid">
+//       <span>Show data table</span>
+//     </Tooltip>
+//   </DataTagAction>
+// );
 
 const RemoveDataset = ({datasetKey, removeDataset = defaultRemoveDataset}) => (
   <DataTagAction
@@ -140,9 +149,11 @@ function SourceDataCatalogFactory() {
             <DatasetTag
               dataset={dataset}
               onClick={
-                showDatasetTable ? () => showDatasetTable(dataset.id) : null
+                () => {}
+                // showDatasetTable ? () => showDatasetTable(dataset.id) : null
               }
             />
+            {/*
             {showDatasetTable ?
               <CenterFlexbox className="source-data-arrow">
                 <ArrowRight height="12px" />
@@ -153,6 +164,7 @@ function SourceDataCatalogFactory() {
                 showDatasetTable={showDatasetTable}
               />
             ) : null}
+            */}
             {showDeleteDataset ? (
               <RemoveDataset
                 datasetKey={dataset.id}
@@ -160,11 +172,13 @@ function SourceDataCatalogFactory() {
               />
             ) : null}
           </DatasetTitle>
+          {/*
           {showDatasetTable ? (
             <DataRowCount className="source-data-rows">{`${numFormat(
               dataset.allData.length
             )} rows`}</DataRowCount>
           ) : null}
+          */}
         </SidePanelSection>
       ))}
     </SourceDataCatelogWrapper>
