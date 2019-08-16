@@ -102,7 +102,7 @@ export function AddDataButtonFactory() {
       onClick={onClick}
       isInactive={!isInactive}
       width="105px"
-      secondary
+      style={{ backgroundColor: '#2185D0'}}
     >
       <Add height="12px" />Add Data
     </Button>
@@ -228,7 +228,7 @@ function LayerManagerFactory(AddDataButton, LayerPanel, SourceDataCatalog) {
           </SidePanelSection>
           <SidePanelSection>
             {defaultDataset ? (
-              <Button onClick={this._addEmptyNewLayer} width="105px">
+              <Button onClick={this._addEmptyNewLayer} width="105px" style={{ backgroundColor: '#21BA45' }}>
                 <Add height="12px" />Add Layer
               </Button>
             ) : null}

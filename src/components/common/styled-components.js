@@ -73,7 +73,7 @@ export const SBFlexboxItem = styled.div`
 export const PanelLabel = styled.label.attrs({
   className: 'side-panel-panel__label'
 })`
-  color: ${props => props.theme.labelColor};
+  color: #000000;
   display: inline-block;
   font-size: 11px;
   font-weight: 400;

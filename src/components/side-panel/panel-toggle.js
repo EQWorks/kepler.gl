@@ -36,6 +36,7 @@ const PanelHeaderBottom = styled.div.attrs({
   padding: 0 16px;
   display: flex;
   min-height: 30px;
+  border-radius: 5px 5px 5px 5px !important;
 `;
 
 const PanelTab = styled.div.attrs({
