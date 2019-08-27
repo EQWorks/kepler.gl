@@ -194,10 +194,9 @@ export default function SidePanelFactory(
             minifiedWidth={0}
             onOpenOrClose={this._onOpenOrClose}
           >
-          {/*
             <PanelHeader
-              appName={appName}
-              version={version}
+              appName={''}
+              version={''}
               onExportImage={this._onExportImage}
               onExportData={this._onExportData}
               visibleDropdown={uiState.visibleDropdown}
@@ -205,8 +204,7 @@ export default function SidePanelFactory(
               hideExportDropdown={uiStateActions.hideExportDropdown}
               onExportMap={this._onExportMap}
               onSaveMap={this.props.onSaveMap}
-            /
-          */}
+            />
             <PanelToggle
               panels={[PANELS[0]]}
               activePanel={activeSidePanel}
