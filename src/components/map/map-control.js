@@ -268,6 +268,9 @@ const MapControlFactory = () => {
         splitMap = {}
       } = mapControls;
 
+      mapControls.mapLegend = { show: false }
+      mapControls.toggle3d = { show: false}
+
       // const items = this.initialDataSelector(this.props);
 
       return (
