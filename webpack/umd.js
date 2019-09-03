@@ -102,6 +102,11 @@ const LIBRARY_BUNDLE_CONFIG = env => ({
             }]
           ]
         }
+      },
+      {
+        type: 'javascript/auto',
+        test: /\.mjs$/,
+        use: []
       }
     ]
   },
