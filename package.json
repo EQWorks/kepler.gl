@@ -99,6 +99,7 @@
     "luma.gl": "^7.1.1",
     "mini-svg-data-uri": "^1.0.3",
     "moment": "^2.10.6",
+    "nebula.gl": "^0.15.0-alpha.7",
     "pbf": "^3.1.0",
     "prop-types": "^15.6.0",
     "react-file-drop": "^0.1.9",

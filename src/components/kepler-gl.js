@@ -103,7 +103,8 @@ function KeplerGlFactory(
       appName: KEPLER_GL_NAME,
       version: KEPLER_GL_VERSION,
       sidePanelWidth: DIMENSIONS.sidePanel.width,
-      theme: {}
+      theme: {},
+      nebulaEditableGeoJsonProps: false
     };
 
     componentWillMount() {
@@ -197,7 +198,8 @@ function KeplerGlFactory(
         visStateActions,
         mapStateActions,
         mapStyleActions,
-        uiStateActions
+        uiStateActions,
+        nebulaEditableGeoJsonProps
       } = this.props;
 
       const {
@@ -259,7 +261,8 @@ function KeplerGlFactory(
         onViewStateChange,
         uiStateActions,
         visStateActions,
-        mapStateActions
+        mapStateActions,
+        nebulaEditableGeoJsonProps
       };
 
       const isSplit = splitMaps && splitMaps.length > 1;

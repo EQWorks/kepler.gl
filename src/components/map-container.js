@@ -25,6 +25,7 @@ import MapboxGLMap from 'react-map-gl';
 import DeckGL from 'deck.gl';
 import {createSelector} from 'reselect';
 import WebMercatorViewport from 'viewport-mercator-project';
+import { EditableGeoJsonLayer } from 'nebula.gl';
 
 // components
 import MapPopoverFactory from 'components/map/map-popover';
@@ -86,12 +87,17 @@ export default function MapContainerFactory(MapPopover, MapControl) {
       onMapToggleLayer: PropTypes.func,
       onMapStyleLoaded: PropTypes.func,
       onMapRender: PropTypes.func,
-      getMapboxRef: PropTypes.func
+      getMapboxRef: PropTypes.func,
+      nebulaEditableGeoJsonProps: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.bool
+      ])
     };
 
     static defaultProps = {
       MapComponent: MapboxGLMap,
-      deckGlProps: {}
+      deckGlProps: {},
+      nebulaEditableGeoJsonProps: false
     };
 
     constructor(props) {
@@ -325,7 +331,8 @@ export default function MapContainerFactory(MapPopover, MapControl) {
         layers,
         visStateActions,
         mapboxApiAccessToken,
-        mapboxApiUrl
+        mapboxApiUrl,
+        nebulaEditableGeoJsonProps
       } = this.props;
 
       let deckGlLayers = [];
@@ -351,6 +358,11 @@ export default function MapContainerFactory(MapPopover, MapControl) {
         }));
       }
 
+      if (nebulaEditableGeoJsonProps) {
+        const drawLayer = new EditableGeoJsonLayer(nebulaEditableGeoJsonProps)
+        deckGlLayers.push(drawLayer)
+      }
+
       return (
         <DeckGL
           {...this.props.deckGlProps}
@@ -359,8 +371,16 @@ export default function MapContainerFactory(MapPopover, MapControl) {
           layers={deckGlLayers}
           onWebGLInitialized={this._onWebGLInitialized}
           onBeforeRender={this._onBeforeRender}
-          onHover={visStateActions.onLayerHover}
-          onClick={visStateActions.onLayerClick}
+          onHover={e => {
+            if (!nebulaEditableGeoJsonProps) {
+              visStateActions.onLayerHover(e)
+            }
+          }}
+          onClick={e => {
+            if (!nebulaEditableGeoJsonProps) {
+              visStateActions.onLayerClick(e)
+            }
+          }}
         />
       );
     }
