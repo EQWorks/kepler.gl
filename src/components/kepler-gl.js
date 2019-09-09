@@ -199,7 +199,11 @@ function KeplerGlFactory(
         mapStateActions,
         mapStyleActions,
         uiStateActions,
-        nebulaEditableGeoJsonProps
+
+        // eq custom
+        nebulaEditableGeoJsonProps,
+        suppressHover,
+        suppressClick
       } = this.props;
 
       const {
@@ -262,7 +266,9 @@ function KeplerGlFactory(
         uiStateActions,
         visStateActions,
         mapStateActions,
-        nebulaEditableGeoJsonProps
+        nebulaEditableGeoJsonProps,
+        suppressHover,
+        suppressClick,
       };
 
       const isSplit = splitMaps && splitMaps.length > 1;

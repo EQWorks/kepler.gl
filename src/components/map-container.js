@@ -332,7 +332,9 @@ export default function MapContainerFactory(MapPopover, MapControl) {
         visStateActions,
         mapboxApiAccessToken,
         mapboxApiUrl,
-        nebulaEditableGeoJsonProps
+        nebulaEditableGeoJsonProps,
+        suppressHover,
+        suppressClick
       } = this.props;
 
       let deckGlLayers = [];
@@ -358,26 +360,32 @@ export default function MapContainerFactory(MapPopover, MapControl) {
         }));
       }
 
+      let drawLayer
       if (nebulaEditableGeoJsonProps) {
-        const drawLayer = new EditableGeoJsonLayer(nebulaEditableGeoJsonProps)
+        drawLayer = new EditableGeoJsonLayer({
+          ...nebulaEditableGeoJsonProps,
+          ignoreHover: true,
+          ignoreClick: true
+        })
         deckGlLayers.push(drawLayer)
       }
 
       return (
         <DeckGL
           {...this.props.deckGlProps}
+          getCursor={drawLayer ? drawLayer.getCursor.bind(drawLayer) : 'grab'}
           viewState={mapState}
           id="default-deckgl-overlay"
           layers={deckGlLayers}
           onWebGLInitialized={this._onWebGLInitialized}
           onBeforeRender={this._onBeforeRender}
           onHover={e => {
-            if (!nebulaEditableGeoJsonProps) {
+            if (!suppressHover || (e.layer || { props: {} }).props.ignoreHover) {
               visStateActions.onLayerHover(e)
             }
           }}
           onClick={e => {
-            if (!nebulaEditableGeoJsonProps) {
+            if (!suppressClick || (e.layer || { props: {} }).props.ignoreClick) {
               visStateActions.onLayerClick(e)
             }
           }}
