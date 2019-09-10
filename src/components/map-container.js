@@ -380,12 +380,12 @@ export default function MapContainerFactory(MapPopover, MapControl) {
           onWebGLInitialized={this._onWebGLInitialized}
           onBeforeRender={this._onBeforeRender}
           onHover={e => {
-            if (!suppressHover || !(e.layer || { props: {} }).props.ignoreHover) {
+            if (!suppressHover && !(e.layer || { props: {} }).props.ignoreHover) {
               visStateActions.onLayerHover(e)
             }
           }}
           onClick={e => {
-            if (!suppressClick || !(e.layer || { props: {} }).props.ignoreClick) {
+            if (!suppressClick && !(e.layer || { props: {} }).props.ignoreClick) {
               visStateActions.onLayerClick(e)
             }
           }}
