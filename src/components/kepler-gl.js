@@ -268,7 +268,7 @@ function KeplerGlFactory(
         mapStateActions,
         nebulaEditableGeoJsonProps,
         suppressHover,
-        suppressClick,
+        suppressClick
       };
 
       const isSplit = splitMaps && splitMaps.length > 1;

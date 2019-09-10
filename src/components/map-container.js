@@ -373,7 +373,7 @@ export default function MapContainerFactory(MapPopover, MapControl) {
       return (
         <DeckGL
           {...this.props.deckGlProps}
-          getCursor={drawLayer ? drawLayer.getCursor.bind(drawLayer) : 'grab'}
+          getCursor={drawLayer ? drawLayer.getCursor.bind(drawLayer) : () => 'grab'}
           viewState={mapState}
           id="default-deckgl-overlay"
           layers={deckGlLayers}
